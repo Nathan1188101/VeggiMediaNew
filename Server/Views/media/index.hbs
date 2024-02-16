@@ -8,8 +8,12 @@
             <p>{{this.provider}}</p>
             <p>{{this.status}}</p>
             <p>{{this.username}}</p>
-            <a href="/media/delete/{{this._id}}" class="btn btn-primary">
+            <a href="/media/delete/{{this._id}}" class="btn btn-primary"
+                onClick="return confirm('fr??')">
                 Delete
+            </a>
+            <a href="/media/edit/{{this._id}}" class="btn btn-primary">
+                Edit
             </a>
         </li>
     {{/each}}
