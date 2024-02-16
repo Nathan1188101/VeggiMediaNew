@@ -1,1 +1,16 @@
 <h1>Media Library</h1>
+<a href="/media/create">Add New Media</a>
+<ul class="row">
+    {{#each media}}
+        <li class="card mb-4 text-center">
+            <h5>{{this.title}}</h5>
+            <p>{{this.releaseYear}}</p>
+            <p>{{this.provider}}</p>
+            <p>{{this.status}}</p>
+            <p>{{this.username}}</p>
+            <a href="/media/delete/{{this._id}}" class="btn btn-primary">
+                Delete
+            </a>
+        </li>
+    {{/each}}
+</ul>

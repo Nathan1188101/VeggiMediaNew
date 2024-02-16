@@ -21,7 +21,7 @@ if(process.env.NODE_ENV !== 'production')
 }
 
 //do db connection - must be after express app instantiated
-mongoose.connect('mongodb+srv://njsecord:z9sCW9NJU8Y4TT92s@javascriptclass.fuzava9.mongodb.net/comp2068g')
+mongoose.connect('mongodb+srv://secord:6wVWpHnawQtS32g8@cluster0.2qalppo.mongodb.net/2068g')
 .then((res) => {console.log('Connected to MongoDB')})
 .catch((err) => {console.log(`Connection to db failed: ${err}`)})
 

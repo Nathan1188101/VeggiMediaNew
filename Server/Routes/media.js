@@ -11,4 +11,15 @@ router.get('/', (req, res, next) => {
     
 })
 
+/* Get: /media/create => display blank form */
+router.get('/create', (req, res, next) => {
+    mediaController.displayCreateForm(req, res, next) 
+})
+
+/* POST: /media/ */
+router.post('/create', (req, res, next) =>{
+    mediaController.createMedia(req, res, next)
+})
+
+
 module.exports = router 
