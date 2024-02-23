@@ -3,11 +3,11 @@
     <fieldset>
         <label for="type">Type: *</label>
         <select name="type" id="type">
-            {{SelectOption 'Book' media.type}}
-            {{SelectOption 'Game' media.type}}
-            {{SelectOption 'Movie' media.type}}
-            {{SelectOption 'Music' media.type}}
-            {{SelectOption 'TV' media.type}}
+            {{selectOption 'Book' media.type}}
+            {{selectOption 'Game' media.type}}
+            {{selectOption 'Movie' media.type}}
+            {{selectOption 'Music' media.type}}
+            {{selectOption 'TV' media.type}}
         </select>
     </fieldset>
     <fieldset>
@@ -30,9 +30,9 @@
     <fieldset>
         <label for="status">Status: *</label>
         <select name="status" id="status">
-            {{SelectOption 'Completed' media.status }}
-            {{SelectOption 'In Progress' media.status }}
-            {{SelectOption 'On My List' media.status }}
+            {{selectOption 'Completed' media.status }}
+            {{selectOption 'In Progress' media.status }}
+            {{selectOption 'On My List' media.status }}
         </select>
     </fieldset>
     <fieldset>
