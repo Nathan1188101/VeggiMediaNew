@@ -3,11 +3,11 @@
     <fieldset>
         <label for="type">Type: *</label>
         <select name="type" id="type">
-            {{selectOption 'Book' media.type}}
-            {{selectOption 'Game' media.type}}
-            {{selectOption 'Movie' media.type}}
-            {{selectOption 'Music' media.type}}
-            {{selectOption 'TV' media.type}}
+            {{SelectOption 'Book' media.type}}
+            {{SelectOption 'Game' media.type}}
+            {{SelectOption 'Movie' media.type}}
+            {{SelectOption 'Music' media.type}}
+            {{SelectOption 'TV' media.type}}
         </select>
     </fieldset>
     <fieldset>
@@ -18,9 +18,14 @@
         <label for="releaseYear">Release Year: </label>
         <input type="number" name="releaseYear" id="releaseYear" min="1500" value="{{media.releaseYear}}"/>
     </fieldset>
+    {{!-- providers --}}
     <fieldset>
         <label for="provider">Provider: *</label>
-        <input name="provider" id="provider" required value="{{media.provider}}"/>
+         <select name="provider" id="provider">
+            {{#each provider}} 
+            {{selectOption name media.provider}}
+            {{/each}}
+        </select>
     </fieldset>
     <fieldset>
         <label for="status">Status: *</label>

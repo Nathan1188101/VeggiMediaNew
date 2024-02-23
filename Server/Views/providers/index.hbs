@@ -1,0 +1,12 @@
+<h1>Providers</h1>
+<a href="/providers/create">Add New Provider</a>
+<ul class="row">
+    {{#each provider}}
+        <li class="card mb-4 text-center">
+            <h5>{{this.name}}</h5>
+            <a href="/providers/edit/{{this._id}}" class="btn btn-primary">
+                Edit
+            </a>
+        </li>
+    {{/each}}
+</ul>

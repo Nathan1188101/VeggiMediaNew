@@ -18,9 +18,14 @@
         <label for="releaseYear">Release Year: </label>
         <input type="number" name="releaseYear" id="releaseYear" min="1500" />
     </fieldset>
+    {{!-- providers --}}
     <fieldset>
         <label for="provider">Provider: *</label>
-        <input name="provider" id="provider" required />
+         <select name="provider" id="provider">
+            {{#each provider}} 
+            {{selectOption name media.provider}}
+            {{/each}}
+        </select>
     </fieldset>
     <fieldset>
         <label for="status">Status: *</label>

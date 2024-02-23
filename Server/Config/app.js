@@ -5,12 +5,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+let dotenv = require('dotenv').config()//for loading information from a .env file into project
+
 //additional dependencies 
 const mongoose = require('mongoose')
 
 // Routing modules
 const indexRouter = require('../Routes');
 const mediaRouter = require('../Routes/media');
+const providerRouter = require('../Routes/provider')
 
 const app = express();
 
@@ -21,7 +24,7 @@ if(process.env.NODE_ENV !== 'production')
 }
 
 //do db connection - must be after express app instantiated
-mongoose.connect('mongodb+srv://secord:6wVWpHnawQtS32g8@cluster0.2qalppo.mongodb.net/2068g')
+mongoose.connect(process.env.DB_CONNECTION)
 .then((res) => {console.log('Connected to MongoDB')})
 .catch((err) => {console.log(`Connection to db failed: ${err}`)})
 
@@ -38,6 +41,7 @@ app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use('/media', mediaRouter);
+app.use('/providers', providerRouter)
 app.use('/', indexRouter);
 
 //hbs custom helpers
