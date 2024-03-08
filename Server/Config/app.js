@@ -9,11 +9,14 @@ let dotenv = require('dotenv').config()//for loading information from a .env fil
 
 //additional dependencies 
 const mongoose = require('mongoose')
+const passport = require('passport')
+const session = require('express-session')
 
 // Routing modules
 const indexRouter = require('../Routes');
 const mediaRouter = require('../Routes/media');
 const providerRouter = require('../Routes/provider')
+const authRouter = require('../Routes/auth');
 
 const app = express();
 
@@ -40,9 +43,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Client')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
 
+//passport config BEFORE routers 
+app.use(session({
+  secret: process.env.PASSPORT_SECRET,
+  resave: true,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session()) 
+
+//link passport to User  
+const User = require('../Models/user')
+passport.use(User.createStrategy()) 
+
 app.use('/media', mediaRouter);
 app.use('/providers', providerRouter)
 app.use('/', indexRouter);
+app.use('/auth', authRouter)
 
 //hbs custom helpers
 const hbs = require('hbs')
