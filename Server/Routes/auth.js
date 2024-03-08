@@ -13,4 +13,9 @@ router.get('/login', (req, res, next) => {
     authController.displayLoginForm(req, res, next);
 });
 
+/* POST /auth/register => process registration attempt */
+router.post('/register', (req, res, next) => {
+    authController.submitRegister(req, res, next)
+}) 
+
 module.exports = router;

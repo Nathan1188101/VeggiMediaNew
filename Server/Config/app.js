@@ -57,6 +57,10 @@ app.use(passport.session())
 const User = require('../Models/user')
 passport.use(User.createStrategy()) 
 
+//link User model w/passport session mgmt 
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use('/media', mediaRouter);
 app.use('/providers', providerRouter)
 app.use('/', indexRouter);
