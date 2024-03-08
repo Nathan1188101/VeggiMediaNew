@@ -33,9 +33,28 @@ let submitRegister = (req, res, next) => {
 
 }
 
+let submitLogin = (req, res , next) => {
+    //basically handing it over to passport here to deal with these parts 
+    passport.authenticate('local', (err, user) => {
+        if(err){
+            return res.redirect('/auth/login?invalid=true')
+        }
+        else{
+            req.login(user, (err) => {
+                if(user){
+                    return res.redirect('/media')
+                }
+                return res.redirect('/auth/login?invalid=true')
+            })
+            
+        }
+    })(req, res, next) 
+}
+
 // make public
 module.exports = {
     displayRegisterForm,
     displayLoginForm,
     submitRegister,
+    submitLogin
 };

@@ -18,4 +18,8 @@ router.post('/register', (req, res, next) => {
     authController.submitRegister(req, res, next)
 }) 
 
+router.post('/login', (req, res, next) => {
+    authController.submitLogin(req, res, next) 
+})
+
 module.exports = router;
