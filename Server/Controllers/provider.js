@@ -10,12 +10,13 @@ let index = async (req, res, next) => {
     res.render('providers/index', {
         title: 'Providers',
         provider: provider
+        , user: req.user
     })
 
 }
 
 let displayCreateForm = (req, res, next) => {
-    res.render('providers/create', {title: 'Add Provider'})
+    res.render('providers/create', {title: 'Add Provider', user: req.user})
 }
 
 let createProvider = async(req, res, next) => {
@@ -35,6 +36,7 @@ let displayEditForm = async(req, res, next) => {
     res.render('providers/edit', {
         title: 'Update',
         provider: provider
+        , user: req.user
     })
 
 }

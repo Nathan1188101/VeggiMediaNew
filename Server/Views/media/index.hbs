@@ -1,4 +1,7 @@
 <h1>Media Library</h1>
+{{#if user}}
+    <a href="/media/create">Add New Media</a>
+{{/if}}
 <a href="/media/create">Add New Media</a>
 <ul class="row">
     {{#each media}}

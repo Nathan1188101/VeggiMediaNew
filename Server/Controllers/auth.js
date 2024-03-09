@@ -15,7 +15,16 @@ let displayRegisterForm = (req, res, next) => {
 };
 
 let displayLoginForm = (req, res, next) => {
-    res.render('auth/login', { title: 'Login' });
+    let messages = ''
+
+    if(req.params.invalid){
+        messages = 'Invalid Login'
+    }
+
+    res.render('auth/login', { 
+        title: 'Login',
+        messages: messages 
+    });
 };
 
 let submitRegister = (req, res, next) => {
@@ -37,18 +46,24 @@ let submitLogin = (req, res , next) => {
     //basically handing it over to passport here to deal with these parts 
     passport.authenticate('local', (err, user) => {
         if(err){
-            return res.redirect('/auth/login?invalid=true')
+            return res.redirect('/auth/login/invalid')
         }
         else{
             req.login(user, (err) => {
                 if(user){
                     return res.redirect('/media')
                 }
-                return res.redirect('/auth/login?invalid=true')
+                return res.redirect('/auth/login/invalid')
             })
             
         }
     })(req, res, next) 
+}
+
+let logout = (req, res, next) => {
+    req.logout((err) => {
+        return res.redirect('/')
+    })
 }
 
 // make public
@@ -56,5 +71,6 @@ module.exports = {
     displayRegisterForm,
     displayLoginForm,
     submitRegister,
-    submitLogin
+    submitLogin,
+    logout
 };

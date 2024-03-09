@@ -11,6 +11,7 @@ let index = async (req, res, next) => {
     res.render('media/index', {
         title: 'Media Library',
         media: media
+        , user: req.user
     })
 
 }
@@ -23,7 +24,8 @@ let displayCreateForm = async(req, res, next) => {
     console.log(provider)
     res.render('media/create', 
     {title: 'Add New Media',
-    provider: provider})
+    provider: provider
+    , user: req.user})
 }
 
 let createMedia = async(req, res, next) => {
@@ -53,7 +55,8 @@ let displayEditForm = async(req, res, next) => {
     res.render('media/edit', {
         title: 'Update',
         media: media,
-        provider: provider 
+        provider: provider,
+        user: req.user 
     })
 
 }
