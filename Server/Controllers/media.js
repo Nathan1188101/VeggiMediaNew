@@ -25,8 +25,8 @@ let displayCreateForm = async(req, res, next) => {
     console.log(provider)
     res.render('media/create', 
     {title: 'Add New Media',
-    provider: provider
-    , user: req.user})
+    provider: provider,
+    user: req.user})
 }
 
 let createMedia = async(req, res, next) => {
@@ -41,8 +41,16 @@ let createMedia = async(req, res, next) => {
 
 let deleteMedia = async(req, res , next) => {
 
-    //remove selected doc
-    await Media.findByIdAndDelete(req.params._id); //need await because it needs a change to actually do it (bad explanation will come back)
+    //for if statement below 
+    let media = await Media.findById(req.params._id)
+
+    if(req.user.username != media.username){
+        return res.redirect('/auth/unauthorized')
+    }
+    else{
+          //remove selected doc
+        await Media.findByIdAndDelete(req.params._id); //need await because it needs a change to actually do it (bad explanation will come back)
+    }
 
     //redirect
     res.redirect('/media')
@@ -53,17 +61,30 @@ let displayEditForm = async(req, res, next) => {
     let media = await Media.findById(req.params._id)
     let provider = await Provider.find()
 
+    if(req.user.username != media.username){
+        return res.redirect('/auth/unauthorized')
+    }
+
     res.render('media/edit', {
         title: 'Update',
         media: media,
         provider: provider,
         user: req.user 
     })
-
 }
 
 let updateMedia = async(req, res, next) => {
-    await Media.findByIdAndUpdate(req.params._id, req.body)
+
+    //for if statement below
+    let media = await Media.findById(req.params._id)
+
+    if(req.user.username != media.username){
+        return res.redirect('/auth/unauthorized')
+    }
+    else{
+        await Media.findByIdAndUpdate(req.params._id, req.body)
+    }
+
     res.redirect('/media')
 }
 

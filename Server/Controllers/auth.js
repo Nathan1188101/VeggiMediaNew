@@ -66,11 +66,16 @@ let logout = (req, res, next) => {
     })
 }
 
+let unauthorizedPage = (req, res, next) => {
+    res.render('auth/unauthorized', {title: 'Unauthorized'})
+}
+
 // make public
 module.exports = {
     displayRegisterForm,
     displayLoginForm,
     submitRegister,
     submitLogin,
+    unauthorizedPage,
     logout
 };
