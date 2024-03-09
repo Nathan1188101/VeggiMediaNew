@@ -2,7 +2,6 @@
 {{#if user}}
     <a href="/media/create">Add New Media</a>
 {{/if}}
-<a href="/media/create">Add New Media</a>
 <ul class="row">
     {{#each media}}
         <li class="card mb-4 text-center">
@@ -11,6 +10,8 @@
             <p>{{this.provider}}</p>
             <p>{{this.status}}</p>
             <p>{{this.username}}</p>
+            {{!-- ../ allows us to access/reference variables outside the scope of the block we are in (in this case media) --}}
+            {{#if ../user}}
             <a href="/media/delete/{{this._id}}" class="btn btn-primary"
                 onClick="return confirm('fr??')">
                 Delete
@@ -18,6 +19,7 @@
             <a href="/media/edit/{{this._id}}" class="btn btn-primary">
                 Edit
             </a>
+            {{/if}}
         </li>
     {{/each}}
 </ul>

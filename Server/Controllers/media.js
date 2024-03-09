@@ -8,10 +8,11 @@ let index = async (req, res, next) => {
     let media = await Media.find()
 
     console.log(media) 
+    console.log("User:", req.user)
     res.render('media/index', {
         title: 'Media Library',
-        media: media
-        , user: req.user
+        media: media,
+        user: req.user
     })
 
 }

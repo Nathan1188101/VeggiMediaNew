@@ -9,8 +9,8 @@ let dotenv = require('dotenv').config()//for loading information from a .env fil
 
 //additional dependencies 
 const mongoose = require('mongoose')
-const passport = require('passport')
 const session = require('express-session')
+const passport = require('passport')
 
 // Routing modules
 const indexRouter = require('../Routes');
